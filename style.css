@@ -13,3 +13,6 @@ button{
     padding: 10px;
     background-color: aquamarine;
 }
+#taskPage{
+    display: none;
+}
