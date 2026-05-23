@@ -5,17 +5,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="login.html">
-    <button>Login</button>
-    </a>
-    <h1>Student Study Tracker</h1>
+    <div id="loginPage">
 
-    <input type="text" id="taskInput" placeholder="Enter study task">
+        <h1>Login</h1>
 
-    <button onclick="addTask()">Add Task</button>
+        <input type="text" id="username" placeholder="Enter Username">
 
-    <ul id="taskList"></ul>
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button onclick="login()">Login</button>
+
+        <p id="message"></p>
+
+    </div>
+    <div id="taskPage">
+
+        <h1>Student Study Tracker</h1>
+
+        <input type="text" id="taskInput" placeholder="Enter Task">
+
+        <button onclick="addTask()">Add Task</button>
+
+        <ul id="taskList"></ul>
+
+    </div>
 
     <script src="script.js"></script>
+
 </body>
-</html>cd
+</html>

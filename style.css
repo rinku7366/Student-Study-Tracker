@@ -1,22 +1,15 @@
-
-body {
+body{
     font-family: Arial;
     padding: 20px;
+    background-color: blanchedalmond;
 }
 
-h1 {
-    color: blue;
+input{
+    margin-bottom: 15px;
+    padding: 10px;
 }
-
-input {
-    padding: 8px;
-}
-
-button {
-    padding: 8px;
-    cursor: pointer;
-}
-
-li {
-    margin-top: 10px;
+button{
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: aquamarine;
 }
