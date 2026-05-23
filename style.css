@@ -1,22 +1,22 @@
 body{
     font-family: Arial;
-    background-color: azure;
+    background-color: lightgray;
     padding: 30px;
 }
 
-input{
-    text-align: center;
-    display: block;
-    margin-bottom: 15px;
-    padding: 10px;
-    width: 250px;
+div{
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
 }
+
+input,
 button{
-    background-color: aquamarine;
     display: block;
-    margin-bottom: 15px;
-    padding: 10px;
     width: 250px;
+    padding: 10px;
+    margin-bottom: 15px;
 }
 
 button{
@@ -26,14 +26,16 @@ button{
     cursor: pointer;
 }
 
-#taskPage{
+#createText{
+    color: blue;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+#signupPage{
     display: none;
 }
 
-div{
-    background-color: white;
-    padding: 20px;
-    width: 300px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+#taskPage{
+    display: none;
 }

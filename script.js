@@ -1,3 +1,11 @@
+function openSignup(){
+
+    document.getElementById("loginPage").style.display = "none";
+
+    document.getElementById("signupPage").style.display = "block";
+
+}
+
 function signup(){
 
     let newUser = document.getElementById("newUsername").value;
@@ -9,6 +17,10 @@ function signup(){
     localStorage.setItem("password", newPass);
 
     alert("Account Created Successfully");
+
+    document.getElementById("signupPage").style.display = "none";
+
+    document.getElementById("loginPage").style.display = "block";
 
 }
 
@@ -23,8 +35,6 @@ function login(){
     let savedPass = localStorage.getItem("password");
 
     if(user === savedUser && pass === savedPass){
-
-        document.getElementById("signupPage").style.display = "none";
 
         document.getElementById("loginPage").style.display = "none";
 
@@ -41,14 +51,12 @@ function login(){
 
 function addTask(){
 
-    let taskInput = document.getElementById("taskInput");
+    let task = document.getElementById("taskInput").value;
 
     let li = document.createElement("li");
 
-    li.innerText = taskInput.value;
+    li.innerText = task;
 
     document.getElementById("taskList").appendChild(li);
-
-    taskInput.value = "";
 
 }
