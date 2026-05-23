@@ -1,18 +1,39 @@
 body{
     font-family: Arial;
-    padding: 20px;
-    background-color: blanchedalmond;
+    background-color: azure;
+    padding: 30px;
 }
 
 input{
+    text-align: center;
+    display: block;
     margin-bottom: 15px;
     padding: 10px;
+    width: 250px;
 }
 button{
-    margin-bottom: 20px;
-    padding: 10px;
     background-color: aquamarine;
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 250px;
 }
+
+button{
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 #taskPage{
     display: none;
+}
+
+div{
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }

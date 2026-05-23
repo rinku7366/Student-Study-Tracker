@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Student Study Tracker</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+
+    <!-- Signup Section -->
+
+    <div id="signupPage">
+
+        <h1>Create Account</h1>
+
+        <input type="text" id="newUsername" placeholder="Create Username">
+
+        <input type="password" id="newPassword" placeholder="Create Password">
+
+        <button onclick="signup()">Sign Up</button>
+
+    </div>
+
+    <!-- Login Section -->
+
     <div id="loginPage">
 
         <h1>Login</h1>
 
-        <input type="text" id="username" placeholder="Enter Username">
+        <input type="text" id="username" placeholder="Username">
 
-        <input type="password" id="password" placeholder="Enter Password">
+        <input type="password" id="password" placeholder="Password">
 
         <button onclick="login()">Login</button>
 
         <p id="message"></p>
 
     </div>
+
+    <!-- Task Section -->
+
     <div id="taskPage">
 
         <h1>Student Study Tracker</h1>
