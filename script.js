@@ -1,62 +1,103 @@
-function openSignup(){
+const API = "http://localhost:5000";
 
-    document.getElementById("loginPage").style.display = "none";
 
-    document.getElementById("signupPage").style.display = "block";
-
-}
-
-function signup(){
-
-    let newUser = document.getElementById("newUsername").value;
-
-    let newPass = document.getElementById("newPassword").value;
-
-    localStorage.setItem("username", newUser);
-
-    localStorage.setItem("password", newPass);
-
-    alert("Account Created Successfully");
-
-    document.getElementById("signupPage").style.display = "none";
-
-    document.getElementById("loginPage").style.display = "block";
-
-}
-
-function login(){
-
-    let user = document.getElementById("username").value;
-
-    let pass = document.getElementById("password").value;
-
-    let savedUser = localStorage.getItem("username");
-
-    let savedPass = localStorage.getItem("password");
-
-    if(user === savedUser && pass === savedPass){
-
-        document.getElementById("loginPage").style.display = "none";
-
-        document.getElementById("taskPage").style.display = "block";
-
-    }
-    else{
-
-        document.getElementById("message").innerText = "Invalid Login";
-
-    }
-
-}
-
-function addTask(){
+// ADD TASK
+async function addTask() {
 
     let task = document.getElementById("taskInput").value;
 
-    let li = document.createElement("li");
+    await fetch(`${API}/addTask`, {
 
-    li.innerText = task;
+        method: "POST",
 
-    document.getElementById("taskList").appendChild(li);
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            task: task
+        })
+
+    });
+
+    loadTasks();
 
 }
+
+
+// LOAD TASKS
+async function loadTasks() {
+
+    const response = await fetch(`${API}/tasks`);
+
+    const tasks = await response.json();
+
+    const taskList = document.getElementById("taskList");
+
+    taskList.innerHTML = "";
+
+    tasks.forEach((task) => {
+
+        taskList.innerHTML += `
+            <div class="task">
+
+                <h3 style="
+                    color: ${task.completed ? 'green' : 'black'}
+                ">
+                    ${task.completed ? '✅' : ''}
+                    ${task.task}
+                </h3>
+
+                <button onclick="completeTask('${task._id}')">
+                    Complete
+                </button>
+
+                <button onclick="deleteTask('${task._id}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+    });
+
+}
+
+
+// DELETE TASK
+async function deleteTask(id) {
+
+    await fetch(`${API}/task/${id}`, {
+
+        method: "DELETE"
+
+    });
+
+    loadTasks();
+
+}
+
+
+// COMPLETE TASK
+async function completeTask(id) {
+
+    await fetch(`${API}/task/${id}`, {
+
+        method: "PUT",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            completed: true
+        })
+
+    });
+
+    loadTasks();
+
+}
+
+
+loadTasks();

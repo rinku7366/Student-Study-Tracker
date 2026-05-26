@@ -2,58 +2,28 @@
 <html>
 <head>
 
-    <title>Student Study Tracker</title>
+    <title>Smart Study Tracker</title>
 
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-    <!-- Login Page -->
+    <div class="container">
 
-    <div id="loginPage">
+        <h1>Smart Study Tracker</h1>
 
-        <h1>Login</h1>
+        <input 
+            type="text" 
+            id="taskInput"
+            placeholder="Enter Task"
+        >
 
-        <input type="text" id="username" placeholder="Username">
+        <button onclick="addTask()">
+            Add Task
+        </button>
 
-        <input type="password" id="password" placeholder="Password">
-
-        <p onclick="openSignup()" id="createText">
-            Create New Account
-        </p>
-
-        <button onclick="login()">Login</button>
-
-        <p id="message"></p>
-
-    </div>
-
-    <!-- Signup Page -->
-
-    <div id="signupPage">
-
-        <h1>Create Account</h1>
-
-        <input type="text" id="newUsername" placeholder="Create Username">
-
-        <input type="password" id="newPassword" placeholder="Create Password">
-
-        <button onclick="signup()">Create Account</button>
-
-    </div>
-
-    <!-- Task Page -->
-
-    <div id="taskPage">
-
-        <h1>Student Study Tracker</h1>
-
-        <input type="text" id="taskInput" placeholder="Enter Task">
-
-        <button onclick="addTask()">Add Task</button>
-
-        <ul id="taskList"></ul>
+        <div id="taskList"></div>
 
     </div>
 
