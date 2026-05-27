@@ -1,20 +1,82 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-    <title>Smart Study Tracker</title>
+    <title>Study Tracker</title>
 
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
-    <div class="container">
+    <!-- LOGIN -->
 
-        <h1>Smart Study Tracker</h1>
+    <div id="loginPage" class="box">
 
-        <input 
-            type="text" 
+        <h1>Login</h1>
+
+        <input
+            type="text"
+            id="loginUsername"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password"
+        >
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <p onclick="showRegister()" class="link">
+            Create Account
+        </p>
+
+    </div>
+
+
+    <!-- REGISTER -->
+
+    <div id="registerPage" class="box">
+
+        <h1>Register</h1>
+
+        <input
+            type="text"
+            id="registerUsername"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Password"
+        >
+
+        <button onclick="register()">
+            Register
+        </button>
+
+        <p onclick="showLogin()" class="link">
+            Back To Login
+        </p>
+
+    </div>
+
+
+    <!-- TASK PAGE -->
+
+    <div id="taskPage" class="box">
+
+        <h1>Study Tracker</h1>
+
+        <input
+            type="text"
             id="taskInput"
             placeholder="Enter Task"
         >
@@ -27,7 +89,9 @@
 
     </div>
 
+
     <script src="script.js"></script>
 
 </body>
+
 </html>

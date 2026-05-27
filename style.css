@@ -5,35 +5,56 @@ body {
 
 }
 
-.container {
+.box {
 
-    width: 80%;
+    width: 350px;
     margin: auto;
-    text-align: center;
-    margin-top: 40px;
+    margin-top: 50px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
 
 }
 
 input {
 
+    width: 100%;
     padding: 10px;
-    width: 250px;
+    margin-bottom: 15px;
 
 }
 
 button {
 
+    width: 100%;
     padding: 10px;
-    margin: 5px;
+    background: green;
+    color: white;
+    border: none;
     cursor: pointer;
+    margin-bottom: 10px;
 
 }
 
 .task {
 
-    background: white;
-    margin: 10px;
+    background: #eee;
     padding: 10px;
+    margin-top: 10px;
     border-radius: 10px;
+
+}
+
+.link {
+
+    color: blue;
+    cursor: pointer;
+
+}
+
+#registerPage,
+#taskPage {
+
+    display: none;
 
 }

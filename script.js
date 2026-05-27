@@ -1,26 +1,139 @@
 const API = "http://localhost:5000";
 
 
-// ADD TASK
-async function addTask() {
+// SHOW REGISTER
+function showRegister() {
 
-    let task = document.getElementById("taskInput").value;
+    document.getElementById(
+        "loginPage"
+    ).style.display = "none";
 
-    await fetch(`${API}/addTask`, {
+    document.getElementById(
+        "registerPage"
+    ).style.display = "block";
 
-        method: "POST",
+}
 
-        headers: {
-            "Content-Type": "application/json"
-        },
 
-        body: JSON.stringify({
-            task: task
-        })
+// SHOW LOGIN
+function showLogin() {
 
-    });
+    document.getElementById(
+        "registerPage"
+    ).style.display = "none";
 
-    loadTasks();
+    document.getElementById(
+        "loginPage"
+    ).style.display = "block";
+
+}
+
+
+// REGISTER
+async function register() {
+
+    const username =
+        document.getElementById(
+            "registerUsername"
+        ).value;
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+    const response = await fetch(
+
+        `${API}/register`,
+
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body: JSON.stringify({
+
+                username,
+                password
+
+            })
+
+        }
+
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+
+}
+
+
+// LOGIN
+async function login() {
+
+    const username =
+        document.getElementById(
+            "loginUsername"
+        ).value;
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+    const response = await fetch(
+
+        `${API}/login`,
+
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body: JSON.stringify({
+
+                username,
+                password
+
+            })
+
+        }
+
+    );
+
+    const data = await response.json();
+
+    if (data.token) {
+
+        localStorage.setItem(
+            "token",
+            data.token
+        );
+
+        document.getElementById(
+            "loginPage"
+        ).style.display = "none";
+
+        document.getElementById(
+            "taskPage"
+        ).style.display = "block";
+
+        loadTasks();
+
+    } else {
+
+        alert(data.message);
+
+    }
 
 }
 
@@ -28,35 +141,63 @@ async function addTask() {
 // LOAD TASKS
 async function loadTasks() {
 
-    const response = await fetch(`${API}/tasks`);
+    const token =
+        localStorage.getItem("token");
+
+    const response = await fetch(
+
+        `${API}/tasks`,
+
+        {
+
+            headers: {
+
+                Authorization:
+                    `Bearer ${token}`
+
+            }
+
+        }
+
+    );
 
     const tasks = await response.json();
 
-    const taskList = document.getElementById("taskList");
+    const taskList =
+        document.getElementById(
+            "taskList"
+        );
 
     taskList.innerHTML = "";
 
     tasks.forEach((task) => {
 
         taskList.innerHTML += `
+
             <div class="task">
 
-                <h3 style="
-                    color: ${task.completed ? 'green' : 'black'}
-                ">
-                    ${task.completed ? '✅' : ''}
+                <h3>
+
+                    ${task.completed ? "✅" : ""}
+
                     ${task.task}
+
                 </h3>
 
-                <button onclick="completeTask('${task._id}')">
+                <button
+                    onclick="completeTask('${task._id}')"
+                >
                     Complete
                 </button>
 
-                <button onclick="deleteTask('${task._id}')">
+                <button
+                    onclick="deleteTask('${task._id}')"
+                >
                     Delete
                 </button>
 
             </div>
+
         `;
 
     });
@@ -64,14 +205,46 @@ async function loadTasks() {
 }
 
 
-// DELETE TASK
-async function deleteTask(id) {
+// ADD TASK
+async function addTask() {
 
-    await fetch(`${API}/task/${id}`, {
+    const task =
+        document.getElementById(
+            "taskInput"
+        ).value;
 
-        method: "DELETE"
+    const token =
+        localStorage.getItem("token");
 
-    });
+    await fetch(
+
+        `${API}/addTask`,
+
+        {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type":
+                    "application/json",
+
+                Authorization:
+                    `Bearer ${token}`
+
+            },
+
+            body: JSON.stringify({
+                task
+            })
+
+        }
+
+    );
+
+    document.getElementById(
+        "taskInput"
+    ).value = "";
 
     loadTasks();
 
@@ -81,23 +254,58 @@ async function deleteTask(id) {
 // COMPLETE TASK
 async function completeTask(id) {
 
-    await fetch(`${API}/task/${id}`, {
+    const token =
+        localStorage.getItem("token");
 
-        method: "PUT",
+    await fetch(
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+        `${API}/task/${id}`,
 
-        body: JSON.stringify({
-            completed: true
-        })
+        {
 
-    });
+            method: "PUT",
+
+            headers: {
+
+                Authorization:
+                    `Bearer ${token}`
+
+            }
+
+        }
+
+    );
 
     loadTasks();
 
 }
 
 
-loadTasks();
+// DELETE TASK
+async function deleteTask(id) {
+
+    const token =
+        localStorage.getItem("token");
+
+    await fetch(
+
+        `${API}/task/${id}`,
+
+        {
+
+            method: "DELETE",
+
+            headers: {
+
+                Authorization:
+                    `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    loadTasks();
+
+}
